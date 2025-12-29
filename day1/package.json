@@ -1,0 +1,15 @@
+{
+  "name": "day1",
+  "version": "1.0.0",
+  "description": "transfer sol from one account to another account",
+  "license": "ISC",
+  "author": "Selvam Ramasamy",
+  "type": "commonjs",
+  "main": "indext.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.98.4"
+  }
+}
