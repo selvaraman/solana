@@ -6,7 +6,9 @@ import {
   sendAndConfirmTransaction,
   LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
+import fs from "fs";
 
+const RPC_URL = "http://127.0.0.1:8899";
 //1. create connection - Connection
 //2. generate key - Keypair
 //3. Request Airdrop
@@ -16,10 +18,25 @@ import {
 //7. send and confirm transaction - sendAndConfirmTransaction
 //8. get balance after transfer
 
-const connection = new Connection("http://127.0.0.1:8899", "confirmed"); //Commitment Level: {processed, confirmed, finalized}
-const sender = Keypair.generate();
-const receiver = Keypair.generate();
+const getKeypair = (fileName) => {
+	if(fs.existsSync(fileName)) {
+		let data = fs.readFileSync(fileName, "utf-8");
+		const secretkey = Uint8Array.from(JSON.parse(data));
+		const keypair = Keypair.fromSecretKey(secretkey);
+		return keypair;
+	} else {
+		console.log("key not exist");
+		const keypair = Keypair.generate();
+		const secretKey = JSON.stringify(Array.from(keypair.secretKey));
+		fs.writeFileSync(fileName, secretKey);
+		return keypair;
+	}
+}
+
 (async () => {
+  const sender = getKeypair("sender.key");
+  const receiver = getKeypair("receiver.key");
+  const connection = new Connection(RPC_URL, "confirmed"); //Commitment Level: {processed, confirmed, finalized}
   await connection.requestAirdrop(sender.publicKey, LAMPORTS_PER_SOL);
   console.log(
     `Sender (before transfer) ${sender.publicKey}: ${await connection.getBalance(sender.publicKey)}`,
