@@ -4,12 +4,15 @@
   "description": "transfer sol from one account to another account",
   "license": "ISC",
   "author": "Selvam Ramasamy",
-  "type": "commonjs",
+  "type": "module",
   "main": "indext.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@solana/web3.js": "^1.98.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3"
   }
 }

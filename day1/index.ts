@@ -18,20 +18,20 @@ const RPC_URL = "http://127.0.0.1:8899";
 //7. send and confirm transaction - sendAndConfirmTransaction
 //8. get balance after transfer
 
-const getKeypair = (fileName) => {
-	if(fs.existsSync(fileName)) {
-		let data = fs.readFileSync(fileName, "utf-8");
-		const secretkey = Uint8Array.from(JSON.parse(data));
-		const keypair = Keypair.fromSecretKey(secretkey);
-		return keypair;
-	} else {
-		console.log("key not exist");
-		const keypair = Keypair.generate();
-		const secretKey = JSON.stringify(Array.from(keypair.secretKey));
-		fs.writeFileSync(fileName, secretKey);
-		return keypair;
-	}
-}
+const getKeypair = (fileName: string) => {
+  if (fs.existsSync(fileName)) {
+    let data = fs.readFileSync(fileName, "utf-8");
+    const secretkey = Uint8Array.from(JSON.parse(data));
+    const keypair = Keypair.fromSecretKey(secretkey);
+    return keypair;
+  } else {
+    console.log("key not exist");
+    const keypair = Keypair.generate();
+    const secretKey = JSON.stringify(Array.from(keypair.secretKey));
+    fs.writeFileSync(fileName, secretKey);
+    return keypair;
+  }
+};
 
 (async () => {
   const sender = getKeypair("sender.key");
@@ -54,6 +54,10 @@ const getKeypair = (fileName) => {
     sender,
   ]);
   console.log("Transaction:", res);
-  console.log(`Sender (after transfer) ${sender.publicKey} : ${await connection.getBalance(sender.publicKey)}`);
-  console.log(`Receiver (after transfer) ${receiver.publicKey} : ${await connection.getBalance(receiver.publicKey)}`);
+  console.log(
+    `Sender (after transfer) ${sender.publicKey} : ${await connection.getBalance(sender.publicKey)}`,
+  );
+  console.log(
+    `Receiver (after transfer) ${receiver.publicKey} : ${await connection.getBalance(receiver.publicKey)}`,
+  );
 })();
