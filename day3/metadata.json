@@ -1,0 +1,12 @@
+{
+    "name": "SPL Token",
+    "symbol": "SPLT",
+    "description": "Sample Token - Sample Token extension program",
+    "image": "https://raw.githubusercontent.com/selvaraman/solana/main/day3/spl-token.png",
+    "attributes": [
+      {
+        "trait_type": "Item",
+        "value": "Developer Portal"
+      }
+    ]
+}
