@@ -1,6 +1,41 @@
-day1/node_modules/
+# Day-specific files from earlier setup
 day1/sender.key
 day1/receiver.key
 day1/.surfpool/
-
 day3/keys/*
+
+# Common patterns for all day* directories
+day*/node_modules/
+day*/target/
+day*/test-ledger/
+day*/.anchor/
+day*/.DS_Store
+day**/*.rs.bk
+day*/.yarn/
+
+# Additional common build/development artifacts
+**/Cargo.lock
+**/.env
+**/.env.local
+**/dist/
+**/build/
+**/*.log
+**/*.pid
+**/*.seed
+**/*.pid.lock
+
+# IDE and editor files
+**/.vscode/
+**/.idea/
+**/*.swp
+**/*.swo
+**/*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
